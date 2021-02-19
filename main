@@ -1,3 +1,4 @@
+local x,r = pcall(function()
 wait(0.005)
 script.Parent = nil
 local allowed = {"Player2","8pgi","epicgamermolent"}
@@ -836,4 +837,5 @@ game:GetService("Players").PlayerAdded:connect(function(plr)
 				cmdbar.TextBox.SERVER.Disabled = false
 			cmdbar.TextBox.CLIENT.Disabled = false
 	end
+end)
 end)
