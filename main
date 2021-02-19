@@ -791,8 +791,8 @@ commands[41] = {
 		for k,v in next,getplayer(arg1) do
 			pcall(function()
 				local explode = Instance.new("Explosion")
-				explode.Parent = arg1.Character.Torso
-				explode.Position = arg1.Character.Torso.Position
+				explode.Parent = v.Character.Torso
+				explode.Position = v.Character.Torso.Position
 			end)
 		end
 	end
