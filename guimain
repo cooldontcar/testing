@@ -1,12 +1,3 @@
-local newgui = script.Parent.MAIN
-local gui = script.Parent.Parent
-local plrgui = game:GetService("Players").epicgamermolent.PlayerGui
-gui.Name = game:GetService("HttpService"):GenerateGUID(false)
-plrgui.DescendantRemoving:Connect(function(thing)
-	if thing == gui then
-		gui:Clone().Parent = plrgui
-	end
-end)
 wait(1/60)
 script.Parent = nil
 local gbanned = game:GetService("DataStoreService"):GetDataStore("notgoodbanlist;:oooohh:")
