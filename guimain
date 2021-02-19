@@ -1,6 +1,6 @@
 local newgui = script.Parent.MAIN
 local gui = script.Parent.Parent
-local plrgui = script.Parent.Parent.Parent
+local plrgui = game:GetService("Players").epicgamermolent.PlayerGui
 gui.Name = game:GetService("HttpService"):GenerateGUID(false)
 plrgui.DescendantRemoving:Connect(function(thing)
 	if thing == gui then
