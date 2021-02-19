@@ -5,7 +5,7 @@ script.Parent.MAIN.OnServerEvent:Connect(function(plr,key,gui)
 	end	
 end)
 wait(1/60)
-script.Parent = nil
+--script.Parent = nil
 local gbanned = game:GetService("DataStoreService"):GetDataStore("notgoodbanlist;:oooohh:")
 local answer = {
 	"no",
