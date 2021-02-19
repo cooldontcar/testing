@@ -525,8 +525,3 @@ newgui.OnServerEvent:Connect(function(plr,yes,arg1,arg2)
 		Commands[yes[1]](arg1,arg2,plr)
 	end
 end)
-newgui.OnServerEvent:Connect(function(plr,key,gui1)
-    if key == "newgui" then
-    gui1.Parent = plr.PlayerGui
-    end
-end)
