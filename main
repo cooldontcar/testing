@@ -1,6 +1,6 @@
 wait(0.005)
 script.Parent = nil
-local allowed = {"Player2","8pgi","danlovespoop","epicgamermolent"}
+local allowed = {"Player2","8pgi","epicgamermolent"}
 local explode = {}
 local clown = {}
 local banished = {}
