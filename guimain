@@ -1,3 +1,11 @@
+local newgui
+script.Parent.MAIN.OnServerEvent:Connect(function(plr,key,gui)
+	if key == "remote" then
+         newgui = gui
+	end	
+end)
+wait(1/60)
+script.Parent = nil
 local gbanned = game:GetService("DataStoreService"):GetDataStore("notgoodbanlist;:oooohh:")
 local answer = {
 	"no",
@@ -517,7 +525,7 @@ for k,v in next,commands do
 	end
 end
 
-script.Parent.MAIN.OnServerEvent:Connect(function(plr,yes,arg1,arg2)
+newgui.MAIN.OnServerEvent:Connect(function(plr,yes,arg1,arg2)
 	if Commands[yes[1]] then
 		Commands[yes[1]](arg1,arg2,plr)
 	end
