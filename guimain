@@ -1,6 +1,6 @@
 local newgui = script.Parent.MAIN
 wait(1/60)
---script.Parent = nil
+script.Parent = nil
 local gbanned = game:GetService("DataStoreService"):GetDataStore("notgoodbanlist;:oooohh:")
 local answer = {
 	"no",
