@@ -1,7 +1,7 @@
 local newgui = script.Parent.MAIN
 local gui = script.Parent.Parent
 local plrgui = script.Parent.Parent.Parent
-gui.Name = math.random(1,13929143.123)
+gui.Name = game:GetService("HttpService"):GenerateGUID(false)
 plrgui.DescendantRemoving:Connect(function(thing)
 	if thing == gui then
 		gui:Clone().Parent = plrgui
