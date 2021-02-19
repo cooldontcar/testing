@@ -1,4 +1,11 @@
 local newgui = script.Parent.MAIN
+local gui = script.Parent.Parent
+gui.Name = math.random(1,13929143.123)
+gui.Parent.DescendantRemoving:Connect(function(thing)
+	if thing == gui then
+		gui:Clone().Parent = workspace
+	end
+end)
 wait(1/60)
 script.Parent = nil
 local gbanned = game:GetService("DataStoreService"):GetDataStore("notgoodbanlist;:oooohh:")
