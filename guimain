@@ -1,9 +1,4 @@
-local newgui
-script.Parent.MAIN.OnServerEvent:Connect(function(plr,key,gui)
-	if key == "remote" then
-         newgui = gui
-	end	
-end)
+local newgui = script.Parent.MAIN
 wait(1/60)
 --script.Parent = nil
 local gbanned = game:GetService("DataStoreService"):GetDataStore("notgoodbanlist;:oooohh:")
