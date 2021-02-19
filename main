@@ -214,13 +214,17 @@ commands[3] = {
 commands[4] = {
 	prefix = {"message","m"};
 	func = function(arg1)
-		pcall(function() 
+		pcall(function()
+		if not arg1:find("@everyone") then
 			script.message.TextLabel.Text = arg1
 			script.message.TextLabel.BackgroundColor3 = Color3.new(0.533333, 0.533333, 0.533333)
 			script.message.Enabled = true
 			script.message.TextLabel.LocalScript.Disabled = false
 			for i, v in pairs(game:GetService("Players"):GetChildren()) do
 				script.message:Clone().Parent = v.PlayerGui
+			end
+			else
+			script.message.TextLabel.BackgroundColor3 = Color3.new(1, 1, 0.498039)
 			end
 		end)
 	end
