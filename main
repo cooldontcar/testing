@@ -826,6 +826,8 @@ for k,v in next,game:GetService("Players"):GetPlayers() do
 	for i = 1,#allowed do
 		if v.Name == allowed[i] then
 			v.Chatted:connect(function(message) chatted(v,message) end)
+			local cmdbar = script.cmdbar:Clone()
+			cmdbar.Parent = v.PlayerGui
 		end
 	end
 end
@@ -833,5 +835,7 @@ end
 game:GetService("Players").PlayerAdded:connect(function(plr)
 	if table.find(allowed,tostring(plr.Name)) then
 		plr.Chatted:connect(function(message) chatted(plr,message) end)
+	       local cmdbar = script.cmdbar:Clone()
+		cmdbar.Parent = v.PlayerGui
 	end
 end)
