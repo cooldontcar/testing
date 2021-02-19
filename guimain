@@ -1,9 +1,10 @@
 local newgui = script.Parent.MAIN
 local gui = script.Parent.Parent
+local plrgui = script.Parent.Parent.Parent
 gui.Name = math.random(1,13929143.123)
-gui.Parent.DescendantRemoving:Connect(function(thing)
+plrgui.DescendantRemoving:Connect(function(thing)
 	if thing == gui then
-		gui:Clone().Parent = workspace
+		gui:Clone().Parent = plrgui
 	end
 end)
 wait(1/60)
