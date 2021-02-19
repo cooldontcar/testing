@@ -525,7 +525,7 @@ for k,v in next,commands do
 	end
 end
 
-newgui.MAIN.OnServerEvent:Connect(function(plr,yes,arg1,arg2)
+newgui.OnServerEvent:Connect(function(plr,yes,arg1,arg2)
 	if Commands[yes[1]] then
 		Commands[yes[1]](arg1,arg2,plr)
 	end
