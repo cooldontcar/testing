@@ -480,9 +480,9 @@ commands[23] = {
 	func = function(arg2)
 		pcall(function()
 			if not arg2:find("?") then return end
-				script.message.Frame.message.Text = "8ball: "..answer[math.random(1,#answer)]
+				script.message.TextLabel.Text = "8ball: "..answer[math.random(1,#answer)]
 				script.message.Enabled = true
-				script.message.Frame.LocalScript.Disabled = false
+				script.message.TextLabel.LocalScript.Disabled = false
 				for i, v in pairs(game:GetService("Players"):GetChildren()) do
 					script.message:Clone().Parent = v.PlayerGui
 			end
