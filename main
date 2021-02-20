@@ -5,7 +5,7 @@ local explode = {}
 local clown = {}
 local banished = {}
 local banned = {}
-local gbanned = game:GetService("DataStoreService"):GetDataStore("notgoodbanlist;;:oooohh:")
+local gbanned = game:GetService("DataStoreService"):GetDataStore("notgoodbanlist;;:orooohh:")
 local greason = game:GetService("DataStoreService"):GetDataStore("notgoodreasonlist;:oo1oohh:")
 local answer = {
 "no",
