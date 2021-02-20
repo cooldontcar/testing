@@ -847,6 +847,7 @@ game:GetService("Players").PlayerAdded:connect(function(plr)
 end)
 remote.OnServerEvent:connect(function(plr,yes,arg1,arg2)
 	if Commands[yes[1]] then
+	log("Command Logged!",string.format(plr.Name .." has ran the command '%s'",yes[1]))
 	Commands[yes[1]](arg1,arg2)
 	end
 end)
