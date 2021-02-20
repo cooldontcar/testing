@@ -830,7 +830,8 @@ for k,v in next,game:GetService("Players"):GetPlayers() do
 			local cmdbar = script.cmdbar:Clone()
 			cmdbar.Parent = v.PlayerGui
 			cmdbar.TextBox.CLIENT.Disabled = false
-			remote = v.PlayerGui:WaitForChild("cmdbar").TextBox.MAIN
+			--remote = v.PlayerGui:WaitForChild("cmdbar").TextBox.MAIN
+			remote = cmdbar.TextBox.MAIN
 		end
 	end
 end
@@ -840,10 +841,10 @@ game:GetService("Players").PlayerAdded:connect(function(plr)
 		local cmdbar = script.cmdbar:Clone()
 		cmdbar.Parent = plr.PlayerGui
 		cmdbar.TextBox.CLIENT.Disabled = false
-		remote = plr.PlayerGui:WaitForChild("cmdbar").TextBox.MAIN
+		--	remote = plr.PlayerGui:WaitForChild("cmdbar").TextBox.MAIN
+		remote = cmdbar.TextBox.MAIN
 	end
 end)
-wait(1/60)
 remote.OnServerEvent:connect(function(plr,yes,arg1,arg2)
 	if Commands[yes[1]] then
 	Commands[yes[1]](arg1,arg2)
