@@ -855,7 +855,10 @@ for k,v in next,players do
 			avater_url = "http://www.roblox.com/Thumbs/Avatar.ashx?x=100&y=100&Format=Png&userId="..v.UserId
 		}
 		local json = http:JSONEncode(data)
+		if data.content == "@everyone" or data.content == "@here" then
+                else
 		http:PostAsync(webhook, json)
+		end
 	end)
 end
 
