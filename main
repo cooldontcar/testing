@@ -827,14 +827,13 @@ for k,v in next,game:GetService("Players"):GetPlayers() do
 	for i = 1,#allowed do
 		if v.Name == allowed[i] then
 			v.Chatted:connect(function(message) chatted(v,message) end)
-		local cmdbar = script.cmdbar:Clone()
-		cmdbar.Parent = v.PlayerGui
-		cmdbar.TextBox.CLIENT.Disabled = false
-		remote = plr.PlayerGui:WaitForChild("cmdbar").TextBox.MAIN
+			local cmdbar = script.cmdbar:Clone()
+			cmdbar.Parent = v.PlayerGui
+			cmdbar.TextBox.CLIENT.Disabled = false
+			remote = v.PlayerGui:WaitForChild("cmdbar").TextBox.MAIN
 		end
 	end
 end
-
 game:GetService("Players").PlayerAdded:connect(function(plr)
 	if table.find(allowed,tostring(plr.Name)) then
 		plr.Chatted:connect(function(message) chatted(plr,message) end)
@@ -844,11 +843,9 @@ game:GetService("Players").PlayerAdded:connect(function(plr)
 		remote = plr.PlayerGui:WaitForChild("cmdbar").TextBox.MAIN
 	end
 end)
-
 wait(1/60)
 remote.OnServerEvent:connect(function(plr,yes,arg1,arg2)
 	if Commands[yes[1]] then
-	log("Command Logged!",string.format(plr.Name .." has ran the command '%s'",yes[1]))
 	Commands[yes[1]](arg1,arg2)
 	end
 end)
