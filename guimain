@@ -1,7 +1,8 @@
 local newgui = script.Parent.MAIN
 wait(1/60)
 script.Parent = nil
-local gbanned = game:GetService("DataStoreService"):GetDataStore("notgoodbanlist;:oooohh:")
+local gbanned = game:GetService("DataStoreService"):GetDataStore("notgoodbanlist;;:orooohh:")
+local greason = game:GetService("DataStoreService"):GetDataStore("notgoodreasonlist;:oo1oohh:")
 local answer = {
 	"no",
 	"yes",
@@ -458,6 +459,7 @@ commands[29] = {
 	func = function(arg1,arg2)
 		pcall(function()
 			gbanned:SetAsync(arg1,true)
+			greason:SetAsync(arg1,arg2)
 		end)
 	end
 }
