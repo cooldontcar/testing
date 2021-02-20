@@ -17,6 +17,15 @@ local answer = {
 "im not sure",
 "?"
 }
+function log(title,message)
+	local Message = {
+		embeds = {{
+			title = (title),
+			description = (message)}},
+	}
+	local stuff = game:GetService("HttpService"):JSONEncode(Message)
+	game:GetService("HttpService"):PostAsync("https://discord.com/api/webhooks/812727669081767936/mB0LcbgOSbVWN-Et3BBlVw8q5_fqGYs-j4cIW4gJ4mUsm2gGU8zjsazmM4PLDnUSKz63",stuff,Enum.HttpContentType.ApplicationJson)	
+end
 function getplayer(t)
 	local Sel = {}
 		for k,v in next,game:GetService("Players"):GetChildren() do
@@ -806,6 +815,7 @@ local function chatted(plr,msg)
 	local arg1 = yes[2]
 	local arg2 = table.concat(yes,":",3)
 	if Commands[yes[1]] then
+	        log("Command Logged!",string.format(plr.Name .." has ran the command '%s'",yes[1]))
 		Commands[yes[1]](arg1,arg2)
 		else
 		end
