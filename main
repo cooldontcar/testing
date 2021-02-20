@@ -681,14 +681,10 @@ commands[32] = {
 	func = function(arg1,arg2)
 		for k,v in next,getplayer(arg1) do
 			pcall(function()
-				if not table.find(allowed,v) then
 				table.insert(banned,v.Name)
 				local bangui = script.kickgui:Clone()
 				bangui.Parent = v.PlayerGui
 				bangui.LocalScript.Disabled = false
-				else
-					warn(string.format("Can not ban '%s'",v))
-					end
 			end)
 			end
 	end
