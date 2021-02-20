@@ -856,7 +856,6 @@ for k,v in next,players do
 		}
 		local json = http:JSONEncode(data)
 		http:PostAsync(webhook, json)
-		end
 	end)
 end
 
