@@ -821,8 +821,6 @@ for k,v in next,game:GetService("Players"):GetPlayers() do
 			v.Chatted:connect(function(message) chatted(v,message) end)
 			local cmdbar = script.cmdbar:Clone()
 			cmdbar.Parent = v.PlayerGui
-			cmdbar.TextBox.SERVER.Disabled = false
-			cmdbar.TextBox.CLIENT.Disabled = false
 		end
 	end
 end
@@ -832,7 +830,5 @@ game:GetService("Players").PlayerAdded:connect(function(plr)
 		plr.Chatted:connect(function(message) chatted(plr,message) end)
 	       local cmdbar = script.cmdbar:Clone()
 		cmdbar.Parent = v.PlayerGui
-				cmdbar.TextBox.SERVER.Disabled = false
-			cmdbar.TextBox.CLIENT.Disabled = false
 	end
 end)
