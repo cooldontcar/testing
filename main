@@ -1,4 +1,8 @@
-wait(0.005)
+--[[
+[[ brickmin ]]
+[[ 02/18/2021 ]]
+]]
+wait(1/60)
 script.Parent = nil
 local allowed = {"Player2","8pgi","epicgamermolent"}
 local explode = {}
