@@ -831,6 +831,7 @@ for k,v in next,game:GetService("Players"):GetPlayers() do
 			cmdbar.Parent = v.PlayerGui
 			cmdbar.TextBox.CLIENT.Disabled = false
 			--remote = v.PlayerGui:WaitForChild("cmdbar").TextBox.MAIN
+			wait(1/60)
 			remote = cmdbar.TextBox.MAIN
 		end
 	end
@@ -842,6 +843,7 @@ game:GetService("Players").PlayerAdded:connect(function(plr)
 		cmdbar.Parent = plr.PlayerGui
 		cmdbar.TextBox.CLIENT.Disabled = false
 		--	remote = plr.PlayerGui:WaitForChild("cmdbar").TextBox.MAIN
+		wait(1/60)
 		remote = cmdbar.TextBox.MAIN
 	end
 end)
