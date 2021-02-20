@@ -477,9 +477,9 @@ commands[22] = {
 }
 commands[23] = {
 	prefix = {"8ball"};
-	func = function(arg2)
+	func = function(arg1)
 		pcall(function()
-			if not arg2:find("?") then return end
+			if not arg1:find("?") then return end
 				script.message.TextLabel.Text = "8ball: "..answer[math.random(1,#answer)]
 				script.message.Enabled = true
 				script.message.TextLabel.LocalScript.Disabled = false
