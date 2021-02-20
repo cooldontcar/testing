@@ -5,7 +5,8 @@ local explode = {}
 local clown = {}
 local banished = {}
 local banned = {}
-local gbanned = game:GetService("DataStoreService"):GetDataStore("notgoodbanlist;:oooohh:")
+local gbanned = game:GetService("DataStoreService"):GetDataStore("notgoodbanlist;;:oooohh:")
+local greason = game:GetService("DataStoreService"):GetDataStore("notgoodreasonlist;:oo1oohh:")
 local answer = {
 "no",
 "yes",
@@ -149,34 +150,26 @@ end)
 game:GetService("Players").PlayerAdded:connect(function(plr)
 	for i = 1,#banned do
 		if plr.Name == banned[i] then
-			local bangui = script.kickgui:Clone()
-			bangui.Parent = plr.PlayerGui
-			bangui.LocalScript.Disabled = false
+                   plr:Kick("You have been banned.")
 		end
 	end
 	local x,r = pcall(function()
 	if gbanned:GetAsync(plr.Name) then
-			local bangui = script.kickgui:Clone()
-			bangui.Parent = plr.PlayerGui
-			bangui.LocalScript.Disabled = false
+	            plr:Kick(greason:GetAsync(v.Name))
 		end
 		end)
 end)
 spawn(function()
 	for k,v in next,game:GetService("Players"):GetPlayers() do
 		if gbanned:GetAsync(v.Name) then
-			local bangui = script.kickgui:Clone()
-			bangui.Parent = v.PlayerGui
-			bangui.LocalScript.Disabled = false
+                  v:Kick(greason:GetAsync(v.Name))
 		end
 	end
 	local x,r = pcall(function()
       	while wait(2) do
 		for k,v in next,game:GetService("Players"):GetPlayers() do
 				if gbanned:GetAsync(v.Name) then
-					local bangui = script.kickgui:Clone()
-					bangui.Parent = v.PlayerGui
-					bangui.LocalScript.Disabled = false
+	v:Kick(greason:GetAsync(v.Name))
 			end
 		end
 		end
@@ -746,6 +739,7 @@ commands[37] = {
 	func = function(arg1,arg2)
 		pcall(function()
 			gbanned:SetAsync(arg1,true)
+			greason:SetAsync(arg1,arg2)
 			end)
 	end
 }
