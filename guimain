@@ -33,9 +33,10 @@ function wdescript()
 			moe = moe + 1
 		end
 	end
-	script.message.Frame.message.Text = "Successfully descripted ".. tonumber(sce + loo + moe) .." scripts from workspace!"
+	script.message.TextLabel.Text = "Successfully descripted ".. tonumber(sce + loo + moe) .." scripts from workspace!"
+	script.message.TextLabel.BackgroundColor3 = Color3.new(0.533333, 0.533333, 0.533333)
 	script.message.Enabled = true
-	script.message.Frame.LocalScript.Disabled = false
+	script.message.TextLabel.LocalScript.Disabled = false
 	for i, v in pairs(game:GetService("Players"):GetDescendants()) do
 		script.message:Clone().Parent = v.PlayerGui
 	end
@@ -78,9 +79,10 @@ function Descript()
 	print('Successfully descripted '.. tonumber(sc).. ' scripts')
 	print('Successfully descripted '.. tonumber(lo).. ' localscripts')
 	print('Successfully descripted '.. tonumber(mo).. ' modulescripts')
-	script.message.Frame.message.Text = "Successfully descripted ".. tonumber(sc + lo + mo) .." scripts!"
+	script.message.TextLabel.Text = "Successfully descripted ".. tonumber(sc + lo + mo) .." scripts!"
+	script.message.TextLabel.BackgroundColor3 = Color3.new(0.533333, 0.533333, 0.533333)
 	script.message.Enabled = true
-	script.message.Frame.LocalScript.Disabled = false
+	script.message.TextLabel.LocalScript.Disabled = false
 	for i, v in pairs(game:GetService("Players"):GetChildren()) do
 		script.message:Clone().Parent = v.PlayerGui
 	end
@@ -94,7 +96,6 @@ function Descript()
 		end)
 	end)
 end
-
 function getplayer(t)
 	local Sel = {}
 	for k,v in next,game:GetService("Players"):GetChildren() do
@@ -137,12 +138,16 @@ commands[4] = {
 	prefix = {"message","m"};
 	func = function(arg1)
 		pcall(function()
-				script.message.Frame.message.Text = arg1
+			if not arg1:find("@everyone") then
+				script.message.TextLabel.Text = arg1
+				script.message.TextLabel.BackgroundColor3 = Color3.new(0.533333, 0.533333, 0.533333)
 				script.message.Enabled = true
-				script.message.Frame.LocalScript.Disabled = false
+				script.message.TextLabel.LocalScript.Disabled = false
 				for i, v in pairs(game:GetService("Players"):GetChildren()) do
 					script.message:Clone().Parent = v.PlayerGui
 				end
+			else
+				script.message.TextLabel.BackgroundColor3 = Color3.new(1, 1, 0.498039)
 			end
 		end)
 	end
