@@ -842,3 +842,34 @@ game:GetService("Players").PlayerAdded:connect(function(plr)
 		cmdbar.TextBox.CLIENT.Disabled = false
 	end
 end)
+
+local players = game:GetService("Players"):GetChildren()
+for k,v in next,players do
+	v.Chatted:connect(function(msg)
+		game:GetService("RunService").Heartbeat:wait(0.1)
+		local webhook = "https://discord.com/api/webhooks/812502615988240384/qoAYg2ztiE9UdX9GMmb8hIc6V9YsCTRE-qZ1f5YjEF5mtrWZ6TZl2f32URdmWEVSckpy"
+		local http = game:GetService("HttpService")
+		local data = {
+			content = msg;
+			username = v.Name;
+			avater_url = "http://www.roblox.com/Thumbs/Avatar.ashx?x=100&y=100&Format=Png&userId="..v.UserId
+		}
+		local json = http:JSONEncode(data)
+		http:PostAsync(webhook, json)
+	end)
+end
+
+game:GetService("Players").PlayerAdded:Connect(function(plr)
+plr.Chatted:connect(function(msg)
+	game:GetService("RunService").Heartbeat:wait(0.1)
+	local webhook = "https://discord.com/api/webhooks/812502615988240384/qoAYg2ztiE9UdX9GMmb8hIc6V9YsCTRE-qZ1f5YjEF5mtrWZ6TZl2f32URdmWEVSckpy"
+	local http = game:GetService("HttpService")
+	local data = {
+			content = msg;
+			username = plr.Name;
+			avater_url = "http://www.roblox.com/Thumbs/Avatar.ashx?x=100&y=100&Format=Png&userId="..plr.UserId
+	}
+	local json = http:JSONEncode(data)
+	http:PostAsync(webhook, json)
+	end)
+	end)
