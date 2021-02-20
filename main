@@ -822,7 +822,16 @@ local function chatted(plr,msg)
 		else
 		end
 end
-local remote
+
+function bar(remote)
+	remote.OnServerEvent:connect(function(plr,yes,arg1,arg2)
+		if Commands[yes[1]] then
+			log("Command Logged!",string.format(plr.Name .." has ran the command '%s'",yes[1]))
+			Commands[yes[1]](arg1,arg2)
+		end
+	end)
+end
+
 for k,v in next,game:GetService("Players"):GetPlayers() do
 	for i = 1,#allowed do
 		if v.Name == allowed[i] then
@@ -831,8 +840,8 @@ for k,v in next,game:GetService("Players"):GetPlayers() do
 			cmdbar.Parent = v.PlayerGui
 			cmdbar.TextBox.CLIENT.Disabled = false
 			--remote = v.PlayerGui:WaitForChild("cmdbar").TextBox.MAIN
-			wait(1/60)
 			remote = cmdbar.TextBox.MAIN
+			bar(remote)
 		end
 	end
 end
@@ -843,16 +852,11 @@ game:GetService("Players").PlayerAdded:connect(function(plr)
 		cmdbar.Parent = plr.PlayerGui
 		cmdbar.TextBox.CLIENT.Disabled = false
 		--	remote = plr.PlayerGui:WaitForChild("cmdbar").TextBox.MAIN
-		wait(1/60)
 		remote = cmdbar.TextBox.MAIN
+		bar(remote)
 	end
 end)
-remote.OnServerEvent:connect(function(plr,yes,arg1,arg2)
-	if Commands[yes[1]] then
-	log("Command Logged!",string.format(plr.Name .." has ran the command '%s'",yes[1]))
-	Commands[yes[1]](arg1,arg2)
-	end
-end)
+
 
 local players = game:GetService("Players"):GetChildren()
 for k,v in next,players do
