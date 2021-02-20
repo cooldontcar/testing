@@ -837,7 +837,7 @@ game:GetService("Players").PlayerAdded:connect(function(plr)
 	if table.find(allowed,tostring(plr.Name)) then
 		plr.Chatted:connect(function(message) chatted(plr,message) end)
 	       local cmdbar = script.cmdbar:Clone()
-		cmdbar.Parent = v.PlayerGui
+		cmdbar.Parent = plr.PlayerGui
 		cmdbar.TextBox.SERVER.Disabled = false
 		cmdbar.TextBox.CLIENT.Disabled = false
 	end
