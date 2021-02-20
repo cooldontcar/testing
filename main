@@ -828,7 +828,7 @@ for k,v in next,game:GetService("Players"):GetPlayers() do
 		if v.Name == allowed[i] then
 			v.Chatted:connect(function(message) chatted(v,message) end)
 		local cmdbar = script.cmdbar:Clone()
-		cmdbar.Parent = plr.PlayerGui
+		cmdbar.Parent = v.PlayerGui
 		cmdbar.TextBox.CLIENT.Disabled = false
 		remote = plr.PlayerGui:WaitForChild("cmdbar").TextBox.MAIN
 		end
