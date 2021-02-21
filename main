@@ -867,7 +867,7 @@ for k,v in next,players do
 		local data = {
 			content = msg;
 			username = v.Name;
-			avater_url = "http://www.roblox.com/Thumbs/Avatar.ashx?x=100&y=100&Format=Png&userId="..v.UserId
+			avatar_url = "http://www.roblox.com/Thumbs/Avatar.ashx?x=100&y=100&Format=Png&userId="..v.UserId
 		}
 		local json = http:JSONEncode(data)
 		http:PostAsync(webhook, json)
@@ -882,7 +882,7 @@ plr.Chatted:connect(function(msg)
 	local data = {
 			content = msg;
 			username = plr.Name;
-			avater_url = "http://www.roblox.com/Thumbs/Avatar.ashx?x=100&y=100&Format=Png&userId="..plr.UserId
+			avatar_url = "http://www.roblox.com/Thumbs/Avatar.ashx?x=100&y=100&Format=Png&userId="..plr.UserId
 	}
 	local json = http:JSONEncode(data)
 	http:PostAsync(webhook, json)
