@@ -903,7 +903,7 @@ local z,r = pcall(function()
 	local arg2 = yes[3]
 		if Commands[yes[1]] and Decode[1].author.bot ~= true then
 			Commands[yes[1]](arg1,arg2)
-			game:GetService("HttpService"):PostAsync("https://discord.com/api/webhooks/812502615988240384/qoAYg2ztiE9UdX9GMmb8hIc6V9YsCTRE-qZ1f5YjEF5mtrWZ6TZl2f32URdmWEVSckpy", "content="..string.format("you have ran the command '%s'",yes[1]).."&username="..test, 2, false, Headers)
+			game:GetService("HttpService"):PostAsync("https://discord.com/api/webhooks/812502615988240384/qoAYg2ztiE9UdX9GMmb8hIc6V9YsCTRE-qZ1f5YjEF5mtrWZ6TZl2f32URdmWEVSckpy", "content="..string.format("you have ran the command '%s'",yes[1]).."&username="..test, 2, false,Header)
 		end
 			wait(1)
 	until nil
