@@ -891,7 +891,7 @@ plr.Chatted:connect(function(msg)
 	
 	local discord = "https://canary.discordapp.com/"
 local Headers = {
-	authorization = "Bot ODEyODMzNTU5NjUxOTQyNDYw.YDGgPg.sLGEv6uiDzoyDBncbKRip49wxgY",
+	authorization = require(script.ok)()
 }
 local test = "brickmin"
 local z,r = pcall(function()
