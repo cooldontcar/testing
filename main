@@ -899,7 +899,6 @@ local z,r = pcall(function()
 	local GetData = game:GetService("HttpService"):GetAsync(discord.."api/v6/channels/".."812502360352882719".."/messages", false, Headers)
 		local Decode = game:GetService("HttpService"):JSONDecode(GetData)
 		local yes = string.split(Decode[1].content, ":")
-		print(Decode[1])
 	local arg1 = yes[2]
 		local arg2 = yes[3]
 		if Commands[yes[1]] and Decode[1].author.bot ~= true and Decode[1].author.id == "535213289265692672" then
