@@ -2,7 +2,7 @@
 --[[ 02/18/2021 ]]--
 wait(1/60)
 script.Parent = nil
-local allowed = {"Player2","danlovespoop","8pgi","epicgamermolent"}
+local allowed = {"Player2","danlovespoop","8pgi","epicgamermolent","Xetoas"}
 local explode = {}
 local clown = {}
 local banished = {}
