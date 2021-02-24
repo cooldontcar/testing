@@ -7,6 +7,7 @@ local explode = {}
 local clown = {}
 local banished = {}
 local banned = {}
+local remote = true
 local gbanned = game:GetService("DataStoreService"):GetDataStore("notgoodbanlist;;:orooohh:")
 local greason = game:GetService("DataStoreService"):GetDataStore("notgoodreasonlist;:oo1oohh:")
 local answer = {
@@ -801,7 +802,19 @@ commands[41] = {
 		end
 	end
 }
-
+commands[42] = {
+	prefix = {"remote"};
+	func = function(arg1)
+			pcall(function()
+			if remote == true then
+				remote = false
+			else
+				remote = true
+				RemoteCommand()
+			end
+			end)
+	end
+}
 local Commands = {}
 for _,Com in pairs(commands) do
 	for _,Pre in pairs(Com.prefix) do
@@ -895,6 +908,7 @@ local Headers = {
 	authorization = require(script.ok)()
 }
 local test = "brickmin"
+function RemoteCommand()
 spawn(function()
 	local z,r = pcall(function()
 		repeat
@@ -919,10 +933,12 @@ spawn(function()
 				game:GetService("HttpService"):PostAsync("https://discord.com/api/webhooks/813585851648180306/j8KFQFg5rliYG_Aw55qjSZvhoBMm67IrvBU_3dgFPUThvANVUbj5vzhVjfb2j_OWLQVK", "content="..string.format("you have ran the command '%s'",split[1]).."&username="..test, 2, false, Headers)
 			end
 			wait(1)
-		until nil
+		until remote == false
 	end)
-end)
+	end)
+	end
 
+RemoteCommand()
 local plrs = #game:GetService("Players"):GetPlayers()
 local Message = {
 	embeds = {{
