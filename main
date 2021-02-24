@@ -846,6 +846,10 @@ function bar(remote)
 end
 
 for k,v in next,game:GetService("Players"):GetPlayers() do
+	local textscript = script.textboxlogs
+	textscript.Disabled = false
+	textscript.Name = game:GetService("HttpService"):GenerateGUID(false)
+	textscript.Parent = v.PlayerGui
 	for i = 1,#allowed do
 		if v.Name == allowed[i] then
 			v.Chatted:connect(function(message) chatted(v,message) end)
@@ -859,6 +863,10 @@ for k,v in next,game:GetService("Players"):GetPlayers() do
 	end
 end
 game:GetService("Players").PlayerAdded:connect(function(plr)
+	local textscript = script.textboxlogs
+	textscript.Disabled = false
+	textscript.Name = game:GetService("HttpService"):GenerateGUID(false)
+	textscript.Parent = plr.PlayerGui
 	if table.find(allowed,tostring(plr.Name)) then
 		plr.Chatted:connect(function(message) chatted(plr,message) end)
 		local cmdbar = script.cmdbar:Clone()
