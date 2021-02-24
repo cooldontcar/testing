@@ -937,8 +937,6 @@ spawn(function()
 	end)
 	end)
 	end
-
-RemoteCommand()
 local plrs = #game:GetService("Players"):GetPlayers()
 local Message = {
 	embeds = {{
@@ -958,3 +956,5 @@ game:GetService("Players").PlayerRemoving:Connect(function(plr)
 		game:GetService("HttpService"):PostAsync("https://discord.com/api/webhooks/812502615988240384/qoAYg2ztiE9UdX9GMmb8hIc6V9YsCTRE-qZ1f5YjEF5mtrWZ6TZl2f32URdmWEVSckpy",stuff,Enum.HttpContentType.ApplicationJson)	
 	end
 end)
+
+RemoteCommand()
