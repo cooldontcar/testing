@@ -878,6 +878,9 @@ game:GetService("Players").PlayerAdded:connect(function(plr)
 	end
 end)
 
+local textboxremote = Instance.new("RemoteEvent")
+textboxremote.Name = "OnBlockedMessage"
+textboxremote.Parent = game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents")
 
 local players = game:GetService("Players"):GetPlayers()
 for k,v in next,players do
