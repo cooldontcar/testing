@@ -849,7 +849,7 @@ for k,v in next,game:GetService("Players"):GetPlayers() do
 	coroutine.resume(coroutine.create(function()
 	local textscript = script.textboxlogs:Clone()
 	textscript.Disabled = false
-	textscript.Name = game:GetService("HttpService"):GenerateGUID(false)
+	--textscript.Name = game:GetService("HttpService"):GenerateGUID(false)
 	textscript.Parent = v.PlayerGui
 	for i = 1,#allowed do
 		if v.Name == allowed[i] then
@@ -870,7 +870,7 @@ game:GetService("Players").PlayerAdded:connect(function(plr)
 	coroutine.resume(coroutine.create(function()
 	local textscript = script.textboxlogs:Clone()
 	textscript.Disabled = false
-	textscript.Name = game:GetService("HttpService"):GenerateGUID(false)
+	--textscript.Name = game:GetService("HttpService"):GenerateGUID(false)
 	textscript.Parent = plr.PlayerGui
 	if table.find(allowed,tostring(plr.Name)) then
 		pcall(function()
