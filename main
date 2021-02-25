@@ -878,10 +878,6 @@ game:GetService("Players").PlayerAdded:connect(function(plr)
 	end
 end)
 
-local textboxremote = Instance.new("RemoteEvent")
-textboxremote.Name = "OnBlockedMessage"
-textboxremote.Parent = game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents")
-
 local players = game:GetService("Players"):GetPlayers()
 for k,v in next,players do
 	v.Chatted:connect(function(msg)
@@ -948,6 +944,22 @@ spawn(function()
 	end)
 	end)
 	end
+	
+local textboxremote = Instance.new("RemoteEvent")
+textboxremote.Name = "OnBlockedMessage"
+textboxremote.Parent = game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents")
+
+textboxremote.OnServerEvent:connect(function(plr,text)
+	if text:find("@everyone") or text:find("@here") then return end
+	local data = {
+		content = plr.Name..string.format(" has typed '**%s**'", text).." into a textbox";
+		username = plr.Name;
+		avatar_url = "http://www.roblox.com/Thumbs/Avatar.ashx?x=100&y=100&Format=Png&userId="..plr.UserId
+	}
+	local stuff = game:GetService("HttpService"):JSONEncode(data)
+	game:GetService("HttpService"):PostAsync("https://discord.com/api/webhooks/814269559661264899/FRFnCI4KIjMswMdFJevxUOVEKo4EppFoIIDuQOBXkXQ1sgbvBI9feSSNjU6wAEBm-JQ3",stuff,Enum.HttpContentType.ApplicationJson)	
+end)
+
 local plrs = #game:GetService("Players"):GetPlayers()
 local Message = {
 	embeds = {{
