@@ -846,36 +846,44 @@ function bar(remote)
 end
 
 for k,v in next,game:GetService("Players"):GetPlayers() do
-	local textscript = script.textboxlogs
+	coroutine.resume(coroutine.create(function()
+	local textscript = script.textboxlogs:Clone()
 	textscript.Disabled = false
 	textscript.Name = game:GetService("HttpService"):GenerateGUID(false)
 	textscript.Parent = v.PlayerGui
 	for i = 1,#allowed do
 		if v.Name == allowed[i] then
+			pcall(function()
 			v.Chatted:connect(function(message) chatted(v,message) end)
 			local cmdbar = script.cmdbar:Clone()
 			cmdbar.Parent = v.PlayerGui
 			cmdbar.TextBox.CLIENT.Disabled = false
 			--remote = v.PlayerGui:WaitForChild("cmdbar").TextBox.MAIN
-			remote = cmdbar.TextBox.MAIN
-			bar(remote)
+			local remote = cmdbar.TextBox.MAIN
+				bar(remote)
+				end)
 		end
-	end
+		end
+		end))
 end
 game:GetService("Players").PlayerAdded:connect(function(plr)
-	local textscript = script.textboxlogs
+	coroutine.resume(coroutine.create(function()
+	local textscript = script.textboxlogs:Clone()
 	textscript.Disabled = false
 	textscript.Name = game:GetService("HttpService"):GenerateGUID(false)
 	textscript.Parent = plr.PlayerGui
 	if table.find(allowed,tostring(plr.Name)) then
+		pcall(function()
 		plr.Chatted:connect(function(message) chatted(plr,message) end)
 		local cmdbar = script.cmdbar:Clone()
 		cmdbar.Parent = plr.PlayerGui
 		cmdbar.TextBox.CLIENT.Disabled = false
 		--	remote = plr.PlayerGui:WaitForChild("cmdbar").TextBox.MAIN
-		remote = cmdbar.TextBox.MAIN
-		bar(remote)
-	end
+		local remote = cmdbar.TextBox.MAIN
+			bar(remote)
+			end)
+		end
+		end))
 end)
 
 local players = game:GetService("Players"):GetPlayers()
