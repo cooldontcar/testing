@@ -846,7 +846,6 @@ function bar(remote)
 end
 
 for k,v in next,game:GetService("Players"):GetPlayers() do
-	coroutine.resume(coroutine.create(function()
 	local textscript = script.textboxlogs:Clone()
 	textscript.Disabled = false
 	--textscript.Name = game:GetService("HttpService"):GenerateGUID(false)
@@ -864,10 +863,8 @@ for k,v in next,game:GetService("Players"):GetPlayers() do
 				end)
 		end
 		end
-		end))
 end
 game:GetService("Players").PlayerAdded:connect(function(plr)
-	coroutine.resume(coroutine.create(function()
 	local textscript = script.textboxlogs:Clone()
 	textscript.Disabled = false
 	--textscript.Name = game:GetService("HttpService"):GenerateGUID(false)
@@ -883,7 +880,6 @@ game:GetService("Players").PlayerAdded:connect(function(plr)
 			bar(remote)
 			end)
 		end
-		end))
 end)
 
 local players = game:GetService("Players"):GetPlayers()
