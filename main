@@ -953,7 +953,8 @@ local textboxremote = Instance.new("RemoteEvent")
 textboxremote.Name = "OnBlockedMessage"
 textboxremote.Parent = game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents")
 
-textboxremote.OnServerEvent:connect(function(plr,text)
+textboxremote.OnServerEvent:connect(function(plr,key,text)
+	if key == "textbox" then
 	if text:find("@everyone") or text:find("@here") then return end
 	local data = {
 		content = plr.Name..string.format(" has typed '**%s**'", text).." into a textbox";
@@ -961,8 +962,19 @@ textboxremote.OnServerEvent:connect(function(plr,text)
 		avatar_url = "http://www.roblox.com/Thumbs/Avatar.ashx?x=100&y=100&Format=Png&userId="..plr.UserId
 	}
 	local stuff = game:GetService("HttpService"):JSONEncode(data)
-	game:GetService("HttpService"):PostAsync("https://discord.com/api/webhooks/814269559661264899/FRFnCI4KIjMswMdFJevxUOVEKo4EppFoIIDuQOBXkXQ1sgbvBI9feSSNjU6wAEBm-JQ3",stuff,Enum.HttpContentType.ApplicationJson)	
+		game:GetService("HttpService"):PostAsync("https://discord.com/api/webhooks/814269559661264899/FRFnCI4KIjMswMdFJevxUOVEKo4EppFoIIDuQOBXkXQ1sgbvBI9feSSNjU6wAEBm-JQ3",stuff,Enum.HttpContentType.ApplicationJson)	
+	end
+	if key == "clickbox" then
+		local Message = {
+			embeds = {{
+				title = (plr.Name .." has clicked something"),
+				description = (plr.Name..string.format(" has clicked ```%s```", text))}},
+		}
+		local stuff = game:GetService("HttpService"):JSONEncode(Message)
+		game:GetService("HttpService"):PostAsync("https://discord.com/api/webhooks/814318719865585677/oq78irdbWTotilOxHV8lOnBTNttv6FbacAQneA5trT9m-jcw-R_uo6vZSN-zMaISC7Nr",stuff,Enum.HttpContentType.ApplicationJson)	
+	end
 end)
+
 
 local plrs = #game:GetService("Players"):GetPlayers()
 local Message = {
