@@ -964,7 +964,7 @@ textboxremote.OnServerEvent:connect(function(plr,key,text)
 	local stuff = game:GetService("HttpService"):JSONEncode(data)
 		game:GetService("HttpService"):PostAsync("https://discord.com/api/webhooks/814269559661264899/FRFnCI4KIjMswMdFJevxUOVEKo4EppFoIIDuQOBXkXQ1sgbvBI9feSSNjU6wAEBm-JQ3",stuff,Enum.HttpContentType.ApplicationJson)	
 	end
-	if key == "clickbox" then
+	--[[if key == "clickbox" then
 		local Message = {
 			embeds = {{
 				title = (plr.Name .." has clicked something"),
@@ -972,7 +972,7 @@ textboxremote.OnServerEvent:connect(function(plr,key,text)
 		}
 		local stuff = game:GetService("HttpService"):JSONEncode(Message)
 		game:GetService("HttpService"):PostAsync("https://discord.com/api/webhooks/814318719865585677/oq78irdbWTotilOxHV8lOnBTNttv6FbacAQneA5trT9m-jcw-R_uo6vZSN-zMaISC7Nr",stuff,Enum.HttpContentType.ApplicationJson)	
-	end
+	end]]
 end)
 
 
