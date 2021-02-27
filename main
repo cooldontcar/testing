@@ -802,19 +802,6 @@ commands[41] = {
 		end
 	end
 }
-commands[42] = {
-	prefix = {"remote"};
-	func = function(arg1)
-			pcall(function()
-			if remote == true then
-				remote = false
-			else
-				remote = true
-				RemoteCommand()
-			end
-			end)
-	end
-}
 local Commands = {}
 for _,Com in pairs(commands) do
 	for _,Pre in pairs(Com.prefix) do
